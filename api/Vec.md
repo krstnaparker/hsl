@@ -8,9 +8,6 @@
  - [Vec\filter](#vecfilter)
  - [Vec\filter_nulls](#vecfilter_nulls)
  - [Vec\flatten](#vecflatten)
- - [Vec\gen](#vecgen)
- - [Vec\gen_filter](#vecgen_filter)
- - [Vec\gen_map](#vecgen_map)
  - [Vec\intersect](#vecintersect)
  - [Vec\keys](#veckeys)
  - [Vec\keys_with_truthy_values](#veckeys_with_truthy_values)
@@ -91,7 +88,7 @@ Returns a new vec of size `$size` where all the values are `$value`.
 ```Hack
 function filter<Tv>(
   Traversable<Tv> $traversable,
-  ?(function(Tv):bool) $value_predicate = null,
+  ??(function(Tv):bool) $value_predicate = null,
 ): vec<Tv>
 ```
 
@@ -104,7 +101,7 @@ To use an async predicate, see Vec\gen_filter.
 ## Vec\filter_nulls()
 
 ```Hack
-function filter_nulls<Tv>(Traversable<Tv> $traversable): vec<Tv>
+function filter_nulls<Tv>(Traversable<?Tv> $traversable): vec<Tv>
 ```
 
 Returns a new vec containing only non-null values of the given
@@ -120,41 +117,6 @@ Returns a new vec formed by joining the Traversable elements of the given
 Traversable.
 
 For a fixed number of Traversables, see Vec\concat.
-
-## Vec\gen()
-
-```Hack
-function gen<Tv>(Traversable<Awaitable<Tv>> $awaitables): Awaitable<vec<Tv>>
-```
-
-
-## Vec\gen_filter()
-
-```Hack
-function gen_filter<Tv>(
-  Container<Tv> $container,
-  (function(Tv):Awaitable<bool>) $value_predicate,
-): Awaitable<vec<Tv>>
-```
-
-Returns a new vec containing only the values for which the given async
-predicate returns `true`.
-
-For non-async predicates, see Vec\filter.
-
-## Vec\gen_map()
-
-```Hack
-function gen_map<Tv1, Tv2>(
-  Traversable<Tv1> $traversable,
-  (function(Tv1):Awaitable<Tv2>) $async_func,
-): Awaitable<vec<Tv2>>
-```
-
-Returns a new vec where each value is the result of calling the given
-async function on the original value.
-
-For non-async functions, see Vec\map.
 
 ## Vec\intersect()
 
@@ -220,7 +182,7 @@ function on the original key and value.
 function partition<Tv>(
   Traversable<Tv> $traversable,
   (function(Tv):bool) $predicate,
-): HH\Lib\Vec\tuple<vec<Tv>,vec<Tv>>
+): (vec<Tv>,vec<Tv>)
 ```
 
 Returns a 2-tuple containing vecs for which the given predicate returned
@@ -229,7 +191,7 @@ Returns a 2-tuple containing vecs for which the given predicate returned
 ## Vec\range()
 
 ```Hack
-function range<Tv as num>(Tv $start, Tv $end, ?Tv $step = null): vec<Tv>
+function range<Tv as num>(Tv $start, Tv $end, ??Tv $step = null): vec<Tv>
 ```
 
 Returns a new vec containing the range of numbers from `$start` to `$end`
@@ -270,7 +232,7 @@ order.
 function slice<Tv>(
   Container<Tv> $container,
   int $offset,
-  ?int $length = null,
+  ??int $length = null,
 ): vec<Tv>
 ```
 
@@ -285,7 +247,7 @@ the vec will contain every element after the offset.
 ```Hack
 function sort<Tv>(
   Traversable<Tv> $traversable,
-  ?(function(Tv,Tv):int) $comparator = null,
+  ??(function(Tv,Tv):int) $comparator = null,
 ): vec<Tv>
 ```
 
@@ -301,7 +263,7 @@ To sort by some computable property of each value, see Vec\sort_by().
 function sort_by<Tv, Ts>(
   Traversable<Tv> $traversable,
   (function(Tv):Ts) $scalar_func,
-  ?(function(Ts,Ts):int) $comparator = null,
+  ??(function(Ts,Ts):int) $comparator = null,
 ): vec<Tv>
 ```
 

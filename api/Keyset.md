@@ -5,8 +5,6 @@
  - [Keyset\filter](#keysetfilter)
  - [Keyset\filter_nulls](#keysetfilter_nulls)
  - [Keyset\flatten](#keysetflatten)
- - [Keyset\gen_filter](#keysetgen_filter)
- - [Keyset\gen_map](#keysetgen_map)
  - [Keyset\intersect](#keysetintersect)
  - [Keyset\keys](#keysetkeys)
  - [Keyset\keys_with_truthy_values](#keysetkeys_with_truthy_values)
@@ -44,7 +42,7 @@ equality. To guarantee equality of order as well as contents, use `===`.
 ```Hack
 function filter<Tv as arraykey>(
   Traversable<Tv> $traversable,
-  ?(function(Tv):bool) $value_predicate = null,
+  ??(function(Tv):bool) $value_predicate = null,
 ): keyset<Tv>
 ```
 
@@ -56,7 +54,9 @@ To remove null values in a typechecker-visible way, see Keyset\filter_nulls.
 ## Keyset\filter_nulls()
 
 ```Hack
-function filter_nulls<Tv as arraykey>(Traversable<Tv> $traversable): keyset<Tv>
+function filter_nulls<Tv as arraykey>(
+  Traversable<?Tv> $traversable,
+): keyset<Tv>
 ```
 
 Returns a new keyset containing only non-null values of the given
@@ -75,32 +75,6 @@ within the given Traversables into
 a keyset.
 
 For a fixed number of Traversables, see Keyset\union.
-
-## Keyset\gen_filter()
-
-```Hack
-function gen_filter<Tv as arraykey>(
-  Container<Tv> $traversable,
-  (function(Tv):Awaitable<bool>) $value_predicate,
-): Awaitable<keyset<Tv>>
-```
-
-Returns a new keyset containing only the values for which the given async
-predicate returns `true`.
-
-For non-async predicates, see Keyset\filter.
-
-## Keyset\gen_map()
-
-```Hack
-function gen_map<Tv, Tk as arraykey>(
-  Traversable<Tv> $traversable,
-  (function(Tv):Awaitable<Tk>) $async_func,
-): Awaitable<keyset<Tk>>
-```
-
-Returns a new keyset where the value is the result of calling the
-given async function on the original values in the given traversable.
 
 ## Keyset\intersect()
 
@@ -167,7 +141,7 @@ function on the original key and value.
 function partition<Tv as arraykey>(
   Traversable<Tv> $traversable,
   (function(Tv):bool) $predicate,
-): HH\Lib\Keyset\tuple<keyset<Tv>,keyset<Tv>>
+): (keyset<Tv>,keyset<Tv>)
 ```
 
 Returns a 2-tuple containing keysets for which the given predicate returned
@@ -179,7 +153,7 @@ Returns a 2-tuple containing keysets for which the given predicate returned
 function slice<Tv as arraykey>(
   Container<Tv> $container,
   int $offset,
-  ?int $length = null,
+  ??int $length = null,
 ): keyset<Tv>
 ```
 
@@ -197,7 +171,7 @@ than the specified length.
 ```Hack
 function sort<Tv as arraykey>(
   Container<Tv> $traversable,
-  ?(function(Tv,Tv):int) $comparator = null,
+  ??(function(Tv,Tv):int) $comparator = null,
 ): keyset<Tv>
 ```
 

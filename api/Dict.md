@@ -14,11 +14,6 @@
  - [Dict\from_entries](#dictfrom_entries)
  - [Dict\from_keys](#dictfrom_keys)
  - [Dict\from_values](#dictfrom_values)
- - [Dict\gen](#dictgen)
- - [Dict\gen_filter](#dictgen_filter)
- - [Dict\gen_filter_with_key](#dictgen_filter_with_key)
- - [Dict\gen_from_keys](#dictgen_from_keys)
- - [Dict\gen_map](#dictgen_map)
  - [Dict\group](#dictgroup)
  - [Dict\group_by](#dictgroup_by)
  - [Dict\map](#dictmap)
@@ -110,7 +105,7 @@ Returns a new dict where all the given keys map to the given value.
 ```Hack
 function filter<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
-  ?(function(Tv):bool) $value_predicate = null,
+  ??(function(Tv):bool) $value_predicate = null,
 ): dict<Tk,Tv>
 ```
 
@@ -125,7 +120,7 @@ To use an async predicate, see Dict\gen_filter.
 ```Hack
 function filter_keys<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
-  ?(function(Tk):bool) $key_predicate = null,
+  ??(function(Tk):bool) $key_predicate = null,
 ): dict<Tk,Tv>
 ```
 
@@ -136,7 +131,7 @@ returns `true`. The default predicate is casting the key to boolean.
 
 ```Hack
 function filter_nulls<Tk, Tv>(
-  KeyedTraversable<Tk,Tv> $traversable,
+  KeyedTraversable<Tk,?Tv> $traversable,
 ): dict<Tk,Tv>
 ```
 
@@ -173,7 +168,7 @@ previous ones.
 
 ```Hack
 function from_entries<Tk as arraykey, Tv>(
-  Traversable<HH\Lib\Dict\tuple<Tk,Tv>> $entries,
+  Traversable<(Tk,Tv)> $entries,
 ): dict<Tk,Tv>
 ```
 
@@ -216,76 +211,12 @@ overwrite the previous ones.
 To create a dict from keys, see Dict\from_keys.
 To create a dict from key/value pairs, see Dict\from_entries.
 
-## Dict\gen()
-
-```Hack
-function gen<Tk, Tv>(
-  KeyedTraversable<Tk,Awaitable<Tv>> $awaitables,
-): Awaitable<dict<Tk,Tv>>
-```
-
-
-## Dict\gen_filter()
-
-```Hack
-function gen_filter<Tk, Tv>(
-  KeyedContainer<Tk,Tv> $traversable,
-  (function(Tv):Awaitable<bool>) $value_predicate,
-): Awaitable<dict<Tk,Tv>>
-```
-
-Returns a new dict containing only the values for which the given async
-predicate returns `true`.
-
-For non-async predicates, see Dict\filter.
-
-## Dict\gen_filter_with_key()
-
-```Hack
-function gen_filter_with_key<Tk, Tv>(
-  KeyedContainer<Tk,Tv> $traversable,
-  (function(Tk,Tv):Awaitable<bool>) $predicate,
-): Awaitable<dict<Tk,Tv>>
-```
-
-Like gen_filter, but lets you utilize the keys of your dict too.
-
-For non-async filters with key, see Dict\filter_with_key.
-
-## Dict\gen_from_keys()
-
-```Hack
-function gen_from_keys<Tk as arraykey, Tv>(
-  Traversable<Tk> $keys,
-  (function(Tk):Awaitable<Tv>) $async_func,
-): Awaitable<dict<Tk,Tv>>
-```
-
-Returns a new dict where each value is the result of calling the given
-async function on the corresponding key.
-
-For non-async functions, see Dict\from_keys.
-
-## Dict\gen_map()
-
-```Hack
-function gen_map<Tk, Tv1, Tv2>(
-  KeyedTraversable<Tk,Tv1> $traversable,
-  (function(Tv1):Awaitable<Tv2>) $value_func,
-): Awaitable<dict<Tk,Tv2>>
-```
-
-Returns a new dict where each value is the result of calling the given
-async function on the original value.
-
-For non-async functions, see Dict\map.
-
 ## Dict\group()
 
 ```Hack
 function group<Tk as arraykey, Tv>(
   Traversable<Tv> $values,
-  ?(function(Tv):?Tk) $key_func,
+  (function(Tv):?Tk) $key_func,
 ): dict<Tk,vec<Tv>>
 ```
 
@@ -296,7 +227,7 @@ Temporary alias. See `Dict\group_by`.
 ```Hack
 function group_by<Tk as arraykey, Tv>(
   Traversable<Tv> $values,
-  ?(function(Tv):?Tk) $key_func,
+  (function(Tv):?Tk) $key_func,
 ): dict<Tk,vec<Tv>>
 ```
 
@@ -359,7 +290,7 @@ keys, later values will overwrite the previous ones.
 function partition<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
   (function(Tv):bool) $predicate,
-): HH\Lib\Dict\tuple<dict<Tk,Tv>,dict<Tk,Tv>>
+): (dict<Tk,Tv>,dict<Tk,Tv>)
 ```
 
 Returns a 2-tuple containing dicts for which the given predicate returned
@@ -371,7 +302,7 @@ Returns a 2-tuple containing dicts for which the given predicate returned
 function partition_with_key<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
   (function(Tk,Tv):bool) $predicate,
-): HH\Lib\Dict\tuple<dict<Tk,Tv>,dict<Tk,Tv>>
+): (dict<Tk,Tv>,dict<Tk,Tv>)
 ```
 
 Returns a 2-tuple containing dicts for which the given keyed predicate
@@ -437,7 +368,7 @@ and the given Traversable. The dict will have the same ordering as the
 function slice<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
   int $offset,
-  ?int $length = null,
+  ??int $length = null,
 ): dict<Tk,Tv>
 ```
 
@@ -447,7 +378,7 @@ function slice<Tk, Tv>(
 ```Hack
 function sort<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
-  ?(function(Tv,Tv):int) $value_comparator = null,
+  ??(function(Tv,Tv):int) $value_comparator = null,
 ): dict<Tk,Tv>
 ```
 
@@ -463,7 +394,7 @@ To sort by some computable property of each value, see sort_by().
 function sort_by<Tk, Tv, Ts>(
   KeyedTraversable<Tk,Tv> $traversable,
   (function(Tv):Ts) $scalar_func,
-  ?(function(Ts,Ts):int) $scalar_comparator = null,
+  ??(function(Ts,Ts):int) $scalar_comparator = null,
 ): dict<Tk,Tv>
 ```
 
@@ -477,7 +408,7 @@ order of scalar key.
 ```Hack
 function sort_by_key<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
-  ?(function(Tk,Tk):int) $key_comparator = null,
+  ??(function(Tk,Tk):int) $key_comparator = null,
 ): dict<Tk,Tv>
 ```
 
