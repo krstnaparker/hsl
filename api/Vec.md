@@ -4,6 +4,7 @@
  - [Vec\concat](#vecconcat)
  - [Vec\diff](#vecdiff)
  - [Vec\diff_by](#vecdiff_by)
+ - [Vec\drop](#vecdrop)
  - [Vec\fill](#vecfill)
  - [Vec\filter](#vecfilter)
  - [Vec\filter_nulls](#vecfilter_nulls)
@@ -21,6 +22,7 @@
  - [Vec\slice](#vecslice)
  - [Vec\sort](#vecsort)
  - [Vec\sort_by](#vecsort_by)
+ - [Vec\take](#vectake)
  - [Vec\unique](#vecunique)
  - [Vec\unique_by](#vecunique_by)
 
@@ -74,6 +76,17 @@ that do not appear in the second one, where an element's identity is
 determined by the scalar function.
 
 For vecs that contain arraykey elements, see Vec\diff.
+
+## Vec\drop()
+
+```Hack
+function drop<Tv>(Traversable<Tv> $traversable, int $n): vec<Tv>
+```
+
+Returns a new vec containing all except the first `$n` elements of the
+given Traversable.
+
+To take only the first `$n` elements, see `Vec\take`.
 
 ## Vec\fill()
 
@@ -242,6 +255,9 @@ determined by the offset and length.
 If no length is given or it exceeds the upper bound of the Traversable,
 the vec will contain every element after the offset.
 
+To take only the first `$n` elements, see `Vec\take`.
+To drop the first `$n` elements, see `Vec\drop`.
+
 ## Vec\sort()
 
 ```Hack
@@ -271,6 +287,17 @@ Returns a new vec sorted by some scalar property of each value of the given
 Traversable, which is computed by the given function. If the optional
 comparator function isn't provided, the values will be sorted in ascending
 order of scalar key.
+
+## Vec\take()
+
+```Hack
+function take<Tv>(Traversable<Tv> $traversable, int $n): vec<Tv>
+```
+
+Returns a new vec containing the first `$n` elements of the given
+Traversable.
+
+To drop the first `$n` elements, see `Vec\drop`.
 
 ## Vec\unique()
 

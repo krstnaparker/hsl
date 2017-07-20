@@ -1,6 +1,8 @@
 # HH\Lib\Keyset
 
+ - [Keyset\chunk](#keysetchunk)
  - [Keyset\diff](#keysetdiff)
+ - [Keyset\drop](#keysetdrop)
  - [Keyset\equal](#keysetequal)
  - [Keyset\filter](#keysetfilter)
  - [Keyset\filter_nulls](#keysetfilter_nulls)
@@ -13,7 +15,24 @@
  - [Keyset\partition](#keysetpartition)
  - [Keyset\slice](#keysetslice)
  - [Keyset\sort](#keysetsort)
+ - [Keyset\take](#keysettake)
  - [Keyset\union](#keysetunion)
+
+## Keyset\chunk()
+
+```Hack
+function chunk<Tv as arraykey>(
+  Traversable<Tv> $traversable,
+  int $size,
+): vec<keyset<Tv>>
+```
+
+Returns a vec containing the given Traversable split into chunks of the
+given size.
+
+If the given Traversable doesn't divide evenly, the final chunk will be
+smaller than the specified size. If there are duplicate values in the
+Traversable, some chunks may be smaller than the specified size.
 
 ## Keyset\diff()
 
@@ -27,6 +46,17 @@ function diff<Tv1 as arraykey, Tv2 as arraykey>(
 
 Returns a new keyset containing only the elements of the first Traversable
 that do not appear in any of the other ones.
+
+## Keyset\drop()
+
+```Hack
+function drop<Tv as arraykey>(Traversable<Tv> $traversable, int $n): keyset<Tv>
+```
+
+Returns a new keyset containing all except the first `$n` elements of
+the given Traversable.
+
+To take only the first `$n` elements, see `Keyset\take`.
 
 ## Keyset\equal()
 
@@ -180,6 +210,20 @@ optional comparator function isn't provided, the values will be sorted in
 ascending order.
 
 TODO(#13270869) Accept Traversable when keyset() correctly handles Iterators.
+
+## Keyset\take()
+
+```Hack
+function take<Tv as arraykey>(Traversable<Tv> $traversable, int $n): keyset<Tv>
+```
+
+Returns a new keyset containing the first `$n` elements of the given
+Traversable.
+
+If there are duplicate values in the Traversable, the keyset may be shorter
+than the specified length.
+
+To drop the first `$n` elements, see `Keyset\drop`.
 
 ## Keyset\union()
 

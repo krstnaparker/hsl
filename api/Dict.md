@@ -4,6 +4,7 @@
  - [Dict\chunk](#dictchunk)
  - [Dict\count_values](#dictcount_values)
  - [Dict\diff_by_key](#dictdiff_by_key)
+ - [Dict\drop](#dictdrop)
  - [Dict\equal](#dictequal)
  - [Dict\fill_keys](#dictfill_keys)
  - [Dict\filter](#dictfilter)
@@ -14,7 +15,6 @@
  - [Dict\from_entries](#dictfrom_entries)
  - [Dict\from_keys](#dictfrom_keys)
  - [Dict\from_values](#dictfrom_values)
- - [Dict\group](#dictgroup)
  - [Dict\group_by](#dictgroup_by)
  - [Dict\map](#dictmap)
  - [Dict\map_keys](#dictmap_keys)
@@ -30,6 +30,7 @@
  - [Dict\sort](#dictsort)
  - [Dict\sort_by](#dictsort_by)
  - [Dict\sort_by_key](#dictsort_by_key)
+ - [Dict\take](#dicttake)
  - [Dict\unique](#dictunique)
  - [Dict\unique_by](#dictunique_by)
 
@@ -79,6 +80,20 @@ function diff_by_key<Tk1, Tk2, Tv>(
 
 Returns a new dict containing only the entries of the first KeyedTraversable
 whose keys do not appear in any of the other ones.
+
+## Dict\drop()
+
+```Hack
+function drop<Tk as arraykey, Tv>(
+  KeyedTraversable<Tk,Tv> $traversable,
+  int $n,
+): dict<Tk,Tv>
+```
+
+Returns a new dict containing all except the first `$n` entries of the
+given KeyedTraversable.
+
+To take only the first `$n` entries, see `Dict\take`.
 
 ## Dict\equal()
 
@@ -210,17 +225,6 @@ overwrite the previous ones.
 
 To create a dict from keys, see Dict\from_keys.
 To create a dict from key/value pairs, see Dict\from_entries.
-
-## Dict\group()
-
-```Hack
-function group<Tk as arraykey, Tv>(
-  Traversable<Tv> $values,
-  (function(Tv):?Tk) $key_func,
-): dict<Tk,vec<Tv>>
-```
-
-Temporary alias. See `Dict\group_by`.
 
 ## Dict\group_by()
 
@@ -415,6 +419,20 @@ function sort_by_key<Tk, Tv>(
 Returns a new dict sorted by the keys of the given KeyedTraversable. If the
 optional comparator function isn't provided, the keys will be sorted in
 ascending order.
+
+## Dict\take()
+
+```Hack
+function take<Tk as arraykey, Tv>(
+  KeyedTraversable<Tk,Tv> $traversable,
+  int $n,
+): dict<Tk,Tv>
+```
+
+Returns a new dict containing the first `$n` entries of the given
+KeyedTraversable.
+
+To drop the first `$n` entries, see `Dict\drop`.
 
 ## Dict\unique()
 

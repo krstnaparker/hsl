@@ -11,8 +11,6 @@
  - [C\first_key](#cfirst_key)
  - [C\first_keyx](#cfirst_keyx)
  - [C\firstx](#cfirstx)
- - [C\gen_first](#cgen_first)
- - [C\gen_firstx](#cgen_firstx)
  - [C\is_empty](#cis_empty)
  - [C\last](#clast)
  - [C\last_key](#clast_key)
@@ -154,28 +152,6 @@ For possibly empty Traversables, see C\first.
 For possibly null Traversables, see C\nfirst.
 For single-element Traversables, see C\onlyx.
 For Awaitables that yield Traversables, see C\gen_firstx.
-
-## C\gen_first()
-
-```Hack
-function gen_first<T>(Awaitable<Traversable<T>> $awaitable): Awaitable<?T>
-```
-
-Returns the first element of the result of the given Awaitable, or null if
-the Traversable is empty.
-
-For non-Awaitable Traversables, see C\first.
-
-## C\gen_firstx()
-
-```Hack
-function gen_firstx<T>(Awaitable<Traversable<T>> $awaitable): Awaitable<T>
-```
-
-Returns the first element of the result of the given Awaitable, or throws if
-the Traversable is empty.
-
-For non-Awaitable Traversables, see C\firstx.
 
 ## C\is_empty()
 
