@@ -167,7 +167,7 @@ strings used for decimals and commas, respectively.
 ## Str\is_empty()
 
 ```Hack
-function is_empty(??string $string): bool
+function is_empty(?string $string): bool
 ```
 
 Returns whether the input is null or the empty string.
@@ -292,7 +292,7 @@ For a single search/replace, see Str\replace.
 ## Str\search()
 
 ```Hack
-function search(string $haystack, string $needle, int $offset = 0): ??int
+function search(string $haystack, string $needle, int $offset = 0): ?int
 ```
 
 Returns the first position of the "needle" string in the "haystack" string,
@@ -312,7 +312,7 @@ Previously known in PHP as `strpos`.
 ## Str\search_ci()
 
 ```Hack
-function search_ci(string $haystack, string $needle, int $offset = 0): ??int
+function search_ci(string $haystack, string $needle, int $offset = 0): ?int
 ```
 
 Returns the first position of the "needle" string in the "haystack" string,
@@ -332,7 +332,7 @@ Previously known in PHP as `stripos`.
 ## Str\search_last()
 
 ```Hack
-function search_last(string $haystack, string $needle, int $offset = 0): ??int
+function search_last(string $haystack, string $needle, int $offset = 0): ?int
 ```
 
 Returns the last position of the "needle" string in the "haystack" string,
@@ -351,7 +351,7 @@ Previously known in PHP as `strrpos`.
 ## Str\slice()
 
 ```Hack
-function slice(string $string, int $offset, ??int $length = null): string
+function slice(string $string, int $offset, ?int $length = null): string
 ```
 
 Returns a substring of length `$length` of the given string starting at the
@@ -370,7 +370,7 @@ function splice(
   string $string,
   string $replacement,
   int $offset,
-  ??int $length = null,
+  ?int $length = null,
 ): string
 ```
 
@@ -389,7 +389,7 @@ Previously known in PHP as `substr_replace`.
 function split(
   string $delimiter,
   string $string,
-  ??int $limit = null,
+  ?int $limit = null,
 ): vec<string>
 ```
 
@@ -442,7 +442,7 @@ it doesn't end with the suffix.
 ## Str\to_int()
 
 ```Hack
-function to_int(string $string): ??int
+function to_int(string $string): ?int
 ```
 
 Returns the given string as an integer, or null if the string isn't numeric.
@@ -450,7 +450,7 @@ Returns the given string as an integer, or null if the string isn't numeric.
 ## Str\trim()
 
 ```Hack
-function trim(string $string, ??string $char_mask = null): string
+function trim(string $string, ?string $char_mask = null): string
 ```
 
 Returns the given string with whitespace stripped from the beginning and end.
@@ -464,7 +464,7 @@ To only strip from the right, see Str\trim_right.
 ## Str\trim_left()
 
 ```Hack
-function trim_left(string $string, ??string $char_mask = null): string
+function trim_left(string $string, ?string $char_mask = null): string
 ```
 
 Returns the given string with whitespace stripped from the left.
@@ -476,7 +476,7 @@ To only strip from the right, see Str\trim_right.
 ## Str\trim_right()
 
 ```Hack
-function trim_right(string $string, ??string $char_mask = null): string
+function trim_right(string $string, ?string $char_mask = null): string
 ```
 
 Returns the given string with whitespace stripped from the right.

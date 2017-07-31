@@ -120,7 +120,7 @@ Returns a new dict where all the given keys map to the given value.
 ```Hack
 function filter<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
-  ??(function(Tv):bool) $value_predicate = null,
+  ?(function(Tv):bool) $value_predicate = null,
 ): dict<Tk,Tv>
 ```
 
@@ -135,7 +135,7 @@ To use an async predicate, see Dict\gen_filter.
 ```Hack
 function filter_keys<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
-  ??(function(Tk):bool) $key_predicate = null,
+  ?(function(Tk):bool) $key_predicate = null,
 ): dict<Tk,Tv>
 ```
 
@@ -372,7 +372,7 @@ and the given Traversable. The dict will have the same ordering as the
 function slice<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
   int $offset,
-  ??int $length = null,
+  ?int $length = null,
 ): dict<Tk,Tv>
 ```
 
@@ -382,7 +382,7 @@ function slice<Tk, Tv>(
 ```Hack
 function sort<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
-  ??(function(Tv,Tv):int) $value_comparator = null,
+  ?(function(Tv,Tv):int) $value_comparator = null,
 ): dict<Tk,Tv>
 ```
 
@@ -398,7 +398,7 @@ To sort by some computable property of each value, see sort_by().
 function sort_by<Tk, Tv, Ts>(
   KeyedTraversable<Tk,Tv> $traversable,
   (function(Tv):Ts) $scalar_func,
-  ??(function(Ts,Ts):int) $scalar_comparator = null,
+  ?(function(Ts,Ts):int) $scalar_comparator = null,
 ): dict<Tk,Tv>
 ```
 
@@ -412,7 +412,7 @@ order of scalar key.
 ```Hack
 function sort_by_key<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
-  ??(function(Tk,Tk):int) $key_comparator = null,
+  ?(function(Tk,Tk):int) $key_comparator = null,
 ): dict<Tk,Tv>
 ```
 

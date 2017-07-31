@@ -72,7 +72,7 @@ equality. To guarantee equality of order as well as contents, use `===`.
 ```Hack
 function filter<Tv as arraykey>(
   Traversable<Tv> $traversable,
-  ??(function(Tv):bool) $value_predicate = null,
+  ?(function(Tv):bool) $value_predicate = null,
 ): keyset<Tv>
 ```
 
@@ -183,7 +183,7 @@ Returns a 2-tuple containing keysets for which the given predicate returned
 function slice<Tv as arraykey>(
   Container<Tv> $container,
   int $offset,
-  ??int $length = null,
+  ?int $length = null,
 ): keyset<Tv>
 ```
 
@@ -201,7 +201,7 @@ than the specified length.
 ```Hack
 function sort<Tv as arraykey>(
   Traversable<Tv> $traversable,
-  ??(function(Tv,Tv):int) $comparator = null,
+  ?(function(Tv,Tv):int) $comparator = null,
 ): keyset<Tv>
 ```
 

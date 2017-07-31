@@ -31,7 +31,7 @@
 ```Hack
 function any<T>(
   Traversable<T> $traversable,
-  ??(function(T):bool) $predicate = null,
+  ?(function(T):bool) $predicate = null,
 ): bool
 ```
 
@@ -71,7 +71,7 @@ Returns the number of elements in the given Container.
 ```Hack
 function every<T>(
   Traversable<T> $traversable,
-  ??(function(T):bool) $predicate = null,
+  ?(function(T):bool) $predicate = null,
 ): bool
 ```
 
@@ -85,7 +85,7 @@ element to bool.
 function find<T>(
   Traversable<T> $traversable,
   (function(T):bool) $value_predicate,
-): ??T
+): ?T
 ```
 
 Returns the first value of the given Traversable for which the predicate
@@ -97,7 +97,7 @@ returns true, or null if no such value is found.
 function find_key<Tk, Tv>(
   KeyedTraversable<Tk,Tv> $traversable,
   (function(Tv):bool) $value_predicate,
-): ??Tk
+): ?Tk
 ```
 
 Returns the key of the first value of the given KeyedTraversable for which
@@ -106,7 +106,7 @@ the predicate returns true, or null if no such value is found.
 ## C\first()
 
 ```Hack
-function first<T>(Traversable<T> $traversable): ??T
+function first<T>(Traversable<T> $traversable): ?T
 ```
 
 Returns the first element of the given Traversable, or null if the
@@ -120,7 +120,7 @@ For Awaitables that yield Traversables, see C\gen_first.
 ## C\first_key()
 
 ```Hack
-function first_key<Tk, Tv>(KeyedTraversable<Tk,Tv> $traversable): ??Tk
+function first_key<Tk, Tv>(KeyedTraversable<Tk,Tv> $traversable): ?Tk
 ```
 
 Returns the first key of the given KeyedTraversable, or null if the
@@ -164,7 +164,7 @@ Returns whether the given Container is empty.
 ## C\last()
 
 ```Hack
-function last<Tv>(Traversable<Tv> $traversable): ??Tv
+function last<Tv>(Traversable<Tv> $traversable): ?Tv
 ```
 
 Returns the last element of the given Traversable, or null if the
@@ -176,7 +176,7 @@ For single-element Traversables, see C\onlyx.
 ## C\last_key()
 
 ```Hack
-function last_key<Tk, Tv>(KeyedTraversable<Tk,Tv> $traversable): ??Tk
+function last_key<Tk, Tv>(KeyedTraversable<Tk,Tv> $traversable): ?Tk
 ```
 
 Returns the last key of the given KeyedTraversable, or null if the
@@ -210,7 +210,7 @@ For single-element Traversables, see C\onlyx.
 ## C\max()
 
 ```Hack
-function max<T as num>(Traversable<T> $traversable): ??T
+function max<T as num>(Traversable<T> $traversable): ?T
 ```
 
 Returns the largest element of the given Traversable, or null if the
@@ -224,7 +224,7 @@ For non-numeric elements, see C\max_by.
 function max_by<T>(
   Traversable<T> $traversable,
   (function(T):num) $num_func,
-): ??T
+): ?T
 ```
 
 Returns the largest element of the given Traversable, or null if the
@@ -238,7 +238,7 @@ For numeric elements, see C\max.
 ## C\min()
 
 ```Hack
-function min<T as num>(Traversable<T> $traversable): ??T
+function min<T as num>(Traversable<T> $traversable): ?T
 ```
 
 Returns the smallest element of the given Traversable, or null if the
@@ -252,7 +252,7 @@ For non-numeric elements, see C\min_by.
 function min_by<T>(
   Traversable<T> $traversable,
   (function(T):num) $num_func,
-): ??T
+): ?T
 ```
 
 Returns the smallest element of the given Traversable, or null if the
@@ -266,7 +266,7 @@ For numeric elements, see C\min.
 ## C\nfirst()
 
 ```Hack
-function nfirst<T>(??Traversable<T> $traversable): ??T
+function nfirst<T>(?Traversable<T> $traversable): ?T
 ```
 
 Returns the first element of the given Traversable, or null if the
@@ -305,7 +305,7 @@ function against an intermediate result and each value.
 ```Hack
 function sum<T>(
   Traversable<T> $traversable,
-  ??(function(T):int) $int_func = null,
+  ?(function(T):int) $int_func = null,
 ): int
 ```
 
@@ -320,7 +320,7 @@ For a float sum, see C\sum_float.
 ```Hack
 function sum_float<T>(
   Traversable<T> $traversable,
-  ??(function(T):num) $num_func = null,
+  ?(function(T):num) $num_func = null,
 ): float
 ```
 

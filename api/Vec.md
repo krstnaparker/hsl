@@ -101,7 +101,7 @@ Returns a new vec of size `$size` where all the values are `$value`.
 ```Hack
 function filter<Tv>(
   Traversable<Tv> $traversable,
-  ??(function(Tv):bool) $value_predicate = null,
+  ?(function(Tv):bool) $value_predicate = null,
 ): vec<Tv>
 ```
 
@@ -204,7 +204,7 @@ Returns a 2-tuple containing vecs for which the given predicate returned
 ## Vec\range()
 
 ```Hack
-function range<Tv as num>(Tv $start, Tv $end, ??Tv $step = null): vec<Tv>
+function range<Tv as num>(Tv $start, Tv $end, ?Tv $step = null): vec<Tv>
 ```
 
 Returns a new vec containing the range of numbers from `$start` to `$end`
@@ -245,7 +245,7 @@ order.
 function slice<Tv>(
   Container<Tv> $container,
   int $offset,
-  ??int $length = null,
+  ?int $length = null,
 ): vec<Tv>
 ```
 
@@ -263,7 +263,7 @@ To drop the first `$n` elements, see `Vec\drop`.
 ```Hack
 function sort<Tv>(
   Traversable<Tv> $traversable,
-  ??(function(Tv,Tv):int) $comparator = null,
+  ?(function(Tv,Tv):int) $comparator = null,
 ): vec<Tv>
 ```
 
@@ -279,7 +279,7 @@ To sort by some computable property of each value, see Vec\sort_by().
 function sort_by<Tv, Ts>(
   Traversable<Tv> $traversable,
   (function(Tv):Ts) $scalar_func,
-  ??(function(Ts,Ts):int) $comparator = null,
+  ?(function(Ts,Ts):int) $comparator = null,
 ): vec<Tv>
 ```
 
