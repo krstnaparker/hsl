@@ -110,7 +110,7 @@ To round a single value, see `Math\floor`.
 ## Math\log()
 
 ```Hack
-function log(num $arg, num $base = \M_E): float
+function log(num $arg, ?num $base = null): float
 ```
 
 Returns the logarithm base `$base` of `$arg`.
@@ -131,10 +131,10 @@ For Traversables, see C\max.
 ## Math\mean()
 
 ```Hack
-function mean(num $first_number, num ...$numbers): float
+function mean(Container<num> $numbers): ?float
 ```
 
-Returns the arithmetic mean of the given numbers.
+Returns the arithmetic mean of the numbers in the given container.
 
 To find the sum, see `C\sum`.
 To find the maximum, see `Math\max`.
@@ -143,7 +143,7 @@ To find the minimum, see `Math\min`.
 ## Math\median()
 
 ```Hack
-function median(num $first_number, num ...$numbers): float
+function median(Container<num> $numbers): ?float
 ```
 
 Returns the median of the given numbers.
