@@ -9,11 +9,9 @@
  - [Keyset\flatten](#keysetflatten)
  - [Keyset\intersect](#keysetintersect)
  - [Keyset\keys](#keysetkeys)
- - [Keyset\keys_with_truthy_values](#keysetkeys_with_truthy_values)
  - [Keyset\map](#keysetmap)
  - [Keyset\map_with_key](#keysetmap_with_key)
  - [Keyset\partition](#keysetpartition)
- - [Keyset\slice](#keysetslice)
  - [Keyset\sort](#keysetsort)
  - [Keyset\take](#keysettake)
  - [Keyset\union](#keysetunion)
@@ -130,17 +128,6 @@ function keys<Tk as arraykey, Tv>(
 Returns a new keyset containing the keys of the given KeyedTraversable,
 maintaining the iteration order.
 
-## Keyset\keys_with_truthy_values()
-
-```Hack
-function keys_with_truthy_values<Tk as arraykey, Tv>(
-  KeyedTraversable<Tk,Tv> $traversable,
-): keyset<Tk>
-```
-
-Returns a new keyset containing only the keys of the given KeyedTraversable
-that map to truthy values.
-
 ## Keyset\map()
 
 ```Hack
@@ -176,25 +163,6 @@ function partition<Tv as arraykey>(
 
 Returns a 2-tuple containing keysets for which the given predicate returned
 `true` and `false`, respectively.
-
-## Keyset\slice()
-
-```Hack
-function slice<Tv as arraykey>(
-  Container<Tv> $container,
-  int $offset,
-  ?int $length = null,
-): keyset<Tv>
-```
-
-Returns a new keyset containing the subsequence of the given Traversable
-determined by the offset and length.
-
-If no length is given or it exceeds the upper bound of the Traversable,
-the keyset will contain every element after the offset.
-
-If there are duplicate values in the Traversable, the keyset may be shorter
-than the specified length.
 
 ## Keyset\sort()
 

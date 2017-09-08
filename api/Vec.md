@@ -11,7 +11,6 @@
  - [Vec\flatten](#vecflatten)
  - [Vec\intersect](#vecintersect)
  - [Vec\keys](#veckeys)
- - [Vec\keys_with_truthy_values](#veckeys_with_truthy_values)
  - [Vec\map](#vecmap)
  - [Vec\map_with_key](#vecmap_with_key)
  - [Vec\partition](#vecpartition)
@@ -151,17 +150,6 @@ function keys<Tk, Tv>(KeyedTraversable<Tk,Tv> $traversable): vec<Tk>
 ```
 
 Returns a new vec containing the keys of the given KeyedTraversable.
-
-## Vec\keys_with_truthy_values()
-
-```Hack
-function keys_with_truthy_values<Tk, Tv>(
-  KeyedTraversable<Tk,Tv> $traversable,
-): vec<Tk>
-```
-
-Returns a new vec containing only the keys of the given KeyedTraversable
-that map to truthy values.
 
 ## Vec\map()
 

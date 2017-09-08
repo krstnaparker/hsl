@@ -16,6 +16,8 @@
  - [Math\round](#mathround)
  - [Math\sin](#mathsin)
  - [Math\sqrt](#mathsqrt)
+ - [Math\sum](#mathsum)
+ - [Math\sum_float](#mathsum_float)
  - [Math\tan](#mathtan)
  - [Math\to_base](#mathto_base)
 
@@ -125,8 +127,8 @@ function max<T as num>(T $first_number, T ...$numbers): T
 
 Returns the largest of all input numbers.
 
-For finding the smallest number, see Math\min.
-For Traversables, see C\max.
+For finding the smallest number, see `Math\min`.
+For Traversables, see `C\max`.
 
 ## Math\mean()
 
@@ -159,8 +161,8 @@ function min<T as num>(T $first_number, T ...$numbers): T
 
 Returns the smallest of all input numbers.
 
-For finding the largest number, see Math\max.
-For Traversables, see C\min.
+For finding the largest number, see `Math\max`.
+For Traversables, see `C\min`.
 
 ## Math\round()
 
@@ -191,6 +193,26 @@ function sqrt(num $arg): float
 ```
 
 Returns the square root of `$arg`.
+
+## Math\sum()
+
+```Hack
+function sum(Traversable<int> $traversable): int
+```
+
+Returns the integer sum of the values of the given Traversable.
+
+For a float sum, see `Math\sum_float`.
+
+## Math\sum_float()
+
+```Hack
+function sum_float<T as num>(Traversable<T> $traversable): float
+```
+
+Returns the float sum of the values of the given Traversable.
+
+For an integer sum, see `Math\sum`.
 
 ## Math\tan()
 

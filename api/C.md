@@ -303,29 +303,19 @@ function against an intermediate result and each value.
 ## C\sum()
 
 ```Hack
-function sum<T>(
-  Traversable<T> $traversable,
-  ?(function(T):int) $int_func = null,
-): int
+function sum<T>(Traversable<T> $traversable): int
 ```
 
-Returns the intger sum of the values of the given Traversable. An optional
-function may be provided to convert values to integers, defaulting to casting
-to int.
+Returns the integer sum of the values of the given Traversable cast to int.
 
 For a float sum, see C\sum_float.
 
 ## C\sum_float()
 
 ```Hack
-function sum_float<T>(
-  Traversable<T> $traversable,
-  ?(function(T):num) $num_func = null,
-): float
+function sum_float<T>(Traversable<T> $traversable): float
 ```
 
-Returns the float sum of the values of the given Traversable. An optional
-function may be provided to convert values to numbers, defaulting to casting
-to float.
+Returns the float sum of the values of the given Traversable cast to float.
 
 For an integer sum, see C\sum.
